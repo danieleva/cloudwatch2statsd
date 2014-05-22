@@ -7,6 +7,8 @@ var cloudwatch = require('aws2js').load('cloudwatch', global_options.credentials
 cloudwatch.setRegion(global_options.region_name);
 
 var metrics = global_options.metrics_config.metrics
+var StatsdClient = require('node-statsd-client').Client;
+var sclient = new StatsdClient(global_options.statsd_config.statsd_host, global_options.statsd_config.statsd_port);
 
 for(index in metrics) {
 	getOneStat(metrics[index],global_options.region_name);
@@ -36,9 +38,9 @@ function getOneStat(metric,regionName) {
 		Unit: metric.Unit,
 	}
 
-	if ( metric.Namespace.match(/Billing/) ) {
-	    options["Period"] = '28800'
-	}
+//	if ( metric.Namespace.match(/Billing/) ) {
+//	    options["Period"] = '28800'
+//	}
 
 	metric.name = (global_options.metrics_config.carbonNameSpacePrefix != undefined) ? global_options.metrics_config.carbonNameSpacePrefix + "." : "";
 	metric.name = metric.name.replace("{regionName}",regionName);
@@ -97,7 +99,7 @@ function getOneStat(metric,regionName) {
 			dataPoints = dataPoints.slice(dataPoints.length-global_options.metrics_config.numberOfOverlappingPoints, dataPoints.length);
 		}
 		for (var point in dataPoints) {
-			console.log("%s %s %s", metric.name, dataPoints[point][metric["Statistics.member.1"]], parseInt(new Date(dataPoints[point].Timestamp).getTime() / 1000.0));
+			sclient.gauge(metric.name, dataPoints[point][metric["Statistics.member.1"]]);
 		}
 	});
 }

@@ -1,17 +1,18 @@
 {
   "name": "cloudwatch2graphite",
-  "description": "Bring Amazon AWS Cloudwatch metrics into Graphite",
-  "homepage": "https://github.com/edasque/cloudwatch2graphite",
+  "description": "Bring Amazon AWS Cloudwatch metrics into Graphite using Statsd",
+  "homepage": "https://github.com/danieleva/cloudwatch2graphite",
   "version": "0.0.1",
   "dependencies": {
     "aws2js": "0.8.3",
     "dateformat": "1.0.6-1.2.3",
-    "optparse": "1.0.4"
+    "optparse": "1.0.4",
+    "node-statsd-client": "1.0.2"
   },
   "maintainers": [
     {
-      "name": "Erik Dasque",
-      "email": "ca_github@frenchguys.com"
+      "name": "Daniele Vazzola",
+      "email": "daniele.vazzola@gmail.com"
     }
   ],
     "contributors": [
@@ -37,12 +38,12 @@
     "api"
   ],
   "bugs": {
-    "url": "https://github.com/edasque/cloudwatch2graphite/issues"
+    "url": "https://github.com/danieleva/cloudwatch2graphite/issues"
   },
   "repositories": [
     {
       "type": "git",
-      "url": "git://github.com/edasque/cloudwatch2graphite.git"
+      "url": "git://github.com/danieleva/cloudwatch2graphite.git"
     }
   ],
   "engines": {

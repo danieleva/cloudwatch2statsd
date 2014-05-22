@@ -7,8 +7,8 @@ var cloudwatch = require('aws2js').load('cloudwatch', global_options.credentials
 cloudwatch.setRegion(global_options.region_name);
 
 var metrics = global_options.metrics_config.metrics
-var StatsdClient = require('node-statsd-client').Client;
-var sclient = new StatsdClient(global_options.statsd_config.statsd_host, global_options.statsd_config.statsd_port);
+var StatsdClient = require('statsd-client');
+var sclient = new StatsdClient({host: global_options.statsd_config.statsd_host, port: global_options.statsd_config.statsd_port});
 
 for(index in metrics) {
 	getOneStat(metrics[index],global_options.region_name);

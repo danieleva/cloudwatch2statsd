@@ -7,7 +7,7 @@
     "aws2js": "0.8.3",
     "dateformat": "1.0.6-1.2.3",
     "optparse": "1.0.4",
-    "node-statsd-client": "1.0.2"
+    "statsd-client": "0.0.15"
   },
   "maintainers": [
     {

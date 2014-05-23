@@ -7,7 +7,7 @@ This application will output statsd gauges for a list of AWS CloudWatch metrics.
 * copy `conf/credentials.json.sample` into `conf/credentials.json` and set up your `accessKeyId`, `secretAccessKey` and `region`.
 * copy `conf/statsd.json.sample` into `conf/statsd.json` and set up your `statsd_host` and `statsd_port`
 
-You'll find here the [reference](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html "Amazon AWS Cloudwatch reference to NameSpaces, metrics, units and dimensions") to NameSpaces, metrics, units and dimensions you'll want to refer to to set up your `metrics.json` (`metrics.json.sample` is a good starting point). Thus far this has been tested with EC2, ELB & DynamoDB.
+You'll find here the [reference](http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html "Amazon AWS Cloudwatch reference to NameSpaces, metrics, units and dimensions") to NameSpaces, metrics, units and dimensions you'll want to refer to to set up your `metrics.json` (`metrics.json.sample` is a good starting point). Thus far this has been tested with EC2, ELB, DynamoDB, SQS.
 
 Usage
 -------------------
@@ -43,5 +43,4 @@ Using runit, every 30 sec:
 
 	#!/bin/sh
 	2>&1
-	node cw2statsd.js 
-	sleep 30
+	exec sh -c "node cw2statsd.js;sleep 30"
